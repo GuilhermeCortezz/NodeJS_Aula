@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/GuilhermeCortezz/NodeJS_Aula#readme",
   "dependencies": {
-    "express": "^4.20.0"
+    "express": "^4.20.0",
+    "express-handlebars": "^8.0.1",
+    "mysql2": "^3.11.1",
+    "sequelize": "^6.37.3"
   }
 }
