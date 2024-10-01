@@ -7,21 +7,22 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
+const departamentos = {
+    1: 'Administrativo',
+    2: 'Designer',
+    3: 'Contabil',
+    4: 'Fábrica'
+};
 // Configuração do Handlebars
 app.engine('handlebars', engine({
     defaultLayout: 'main',
     helpers: {
-        switch: (value, options) => {
-            this.switchValue = value;
-            return options.fn(this);
+        getDepartmentName: function (id) {
+            return departamentos[id] || 'Desconhecido';
         },
-        case: (value, options) => {
-            return (value == this.switchValue) ? options.fn(this) : options.inverse(this);
-        },
-        default: (options) => {
-            return options.fn(this);
-        }
-    }    
+        eq: (a, b) => a === b
+    }  
 }));
 app.set('view engine', 'handlebars');
 

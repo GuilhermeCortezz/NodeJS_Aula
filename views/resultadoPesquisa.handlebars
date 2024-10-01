@@ -3,35 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultados da Pesquisa</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Arial', sans-serif;
+            color: #495057;
+        }
+        .container {
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+            margin-top: 20px;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>Resultados da Pesquisa por "{{query}}"</h2>
-        <table class="table">
-            <tr>
-                <th>Nome</th>
-                <th>Salário Bruto</th>
-                <th>Salário Líquido</th>
-                <th>Departamento</th>
-            </tr>
-            {{#each empregados}}
-            <tr>
-                <td>{{this.nome}}</td>
-                <td>{{this.salarioBruto}}</td>
-                <td>{{this.salarioLiquido}}</td>
-                <td>
-                    {{#switch this.departamento}}
-                        {{#case 1}}Administrativo{{/case}}
-                        {{#case 2}}Designer{{/case}}
-                        {{#case 3}}Contabil{{/case}}
-                        {{#case 4}}Fábrica{{/case}}
-                    {{/switch}}
-                </td>
-            </tr>
-            {{/each}}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Salário Bruto</th>
+                    <th>Salário Líquido</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each empregados}}
+                <tr>
+                    <td>{{this.nome}}</td>
+                    <td>R$ {{this.salarioBruto}}</td>
+                    <td>R$ {{this.salarioLiquido}}</td>
+                    <td>{{getDepartmentName this.departamento}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
-        <a href="/">Voltar</a>
+        <a href="/" class="btn btn-back"><i class="fas fa-arrow-left"></i> Voltar</a>
     </div>
 </body>
 </html>

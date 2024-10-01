@@ -1,22 +1,14 @@
 {
-  "name": "nodejs_aula",
+  "name": "crud",
   "version": "1.0.0",
-  "description": "Aula1-Parte2",
+  "description": "CRUD",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GuilhermeCortezz/NodeJS_Aula.git"
-  },
-  "author": "Cortez",
+  "author": "Julia&Rafael",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GuilhermeCortezz/NodeJS_Aula/issues"
-  },
-  "homepage": "https://github.com/GuilhermeCortezz/NodeJS_Aula#readme",
   "dependencies": {
     "express": "^4.20.0",
     "express-handlebars": "^8.0.1",
