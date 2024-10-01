@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Empregado</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Editar Empregado</h2>
+        <form action="/update/{{empregado.id}}" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{empregado.nome}}" required>
+            </div>
+            <div class="form-group">
+                <label for="salarioBruto">Salário Bruto:</label>
+                <input type="number" step="0.01" class="form-control" id="salarioBruto" name="salarioBruto" value="{{empregado.salarioBruto}}" required>
+            </div>
+            <div class="form-group">
+                <label for="departamento">Departamento:</label>
+                <select class="form-control" id="departamento" name="departamento" required>
+                    {{#switch empregado.departamento}}
+                        <option value="1" {{#case 1}}selected{{/case}}>Administrativo</option>
+                        <option value="2" {{#case 2}}selected{{/case}}>Designer</option>
+                        <option value="3" {{#case 3}}selected{{/case}}>Contabil</option>
+                        <option value="4" {{#case 4}}selected{{/case}}>Fábrica</option>
+                    {{/switch}}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </form>
+    </div>
+</body>
+</html>

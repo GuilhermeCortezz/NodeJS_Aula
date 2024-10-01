@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>{{message}}</h2>
+        <table class="table">
+            <tr>
+                <th>Nome</th>
+                <th>Salário Bruto</th>
+                <th>Salário Líquido</th>
+                <th>Departamento</th>
+            </tr>
+            <tr>
+                <td>{{empregado.nome}}</td>
+                <td>{{empregado.salarioBruto}}</td>
+                <td>{{empregado.salarioLiquido}}</td>
+                <td>
+                    {{#switch empregado.departamento}}
+                        {{#case 1}}Administrativo{{/case}}
+                        {{#case 2}}Designer{{/case}}
+                        {{#case 3}}Contabil{{/case}}
+                        {{#case 4}}Fábrica{{/case}}
+                    {{/switch}}
+                </td>
+            </tr>
+        </table>
+        <a href="/">Voltar</a>
+    </div>
+</body>
+</html>

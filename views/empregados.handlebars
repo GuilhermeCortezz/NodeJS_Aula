@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Empregados</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Lista de Empregados</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Salário Bruto</th>
+                    <th>Salário Líquido</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each empregados}}
+                <tr>
+                    <td>{{this.nome}}</td>
+                    <td>{{this.salarioBruto}}</td>
+                    <td>{{this.salarioLiquido}}</td>
+                    <td>
+                        {{#switch this.departamento}}
+                            {{#case 1}}Administrativo{{/case}}
+                            {{#case 2}}Designer{{/case}}
+                            {{#case 3}}Contabil{{/case}}
+                            {{#case 4}}Fábrica{{/case}}
+                        {{/switch}}
+                    </td>
+                    <td>
+                        <form action="/edit/{{this.id}}" method="GET" style="display:inline;">
+                            <button type="submit" class="btn btn-warning">Editar</button>
+                        </form>
+                        <form action="/delete/{{this.id}}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+
+        <h2 class="container mt-4">Pesquisa</h2>
+        <form action="/pesquisar" method="GET" class="form-inline mb-2">
+            <input type="text" name="nome" class="form-control mr-2" placeholder="Pesquisar por nome" required>
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </form>
+        <a href="/maior-salario" class="btn btn-primary mb-2">Maior Salário</a>
+        <a href="/menor-salario" class="btn btn-primary mb-2">Menor Salário</a>
+        <a href="/classificar-setor" class="btn btn-primary mb-2">Classificar por Setor</a>
+
+
+
+
+        <h2 class="mt-4">Adicionar Empregado</h2>
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="salarioBruto">Salário Bruto:</label>
+                <input type="number" step="0.01" class="form-control" id="salarioBruto" name="salarioBruto" required>
+            </div>
+            <div class="form-group">
+                <label for="departamento">Departamento:</label>
+                <select class="form-control" id="departamento" name="departamento" required>
+                    <option value="1">Administrativo</option>
+                    <option value="2">Designer</option>
+                    <option value="3">Contabil</option>
+                    <option value="4">Fábrica</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+    </div>
+</body>
+</html>

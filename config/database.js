@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 sequelize = new Sequelize(
-    'AULA1',
+    'CRUD',
     'root',
     'mysqluser', 
     {
