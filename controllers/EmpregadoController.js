@@ -71,7 +71,12 @@ exports.maiorSalario = async (req, res) => {
     const empregado = await Empregado.findOne({
         order: [['salarioBruto', 'DESC']]
     });
-    res.render('resultado', { empregado: empregado.dataValues, message: "Maior Salário" });
+    empregado.salarioLiquido = calcularSalarioLiquido(empregado.salarioBruto);
+    res.render('resultado', { empregado: {
+        nome: empregado.nome,
+        salarioBruto: empregado.salarioBruto,
+        salarioLiquido: empregado.salarioLiquido,
+        departamento: empregado.departamento}, message: "Maior Salário" });
 };
 
 // Pesquisar quem ganha o menor salário
@@ -79,7 +84,14 @@ exports.menorSalario = async (req, res) => {
     const empregado = await Empregado.findOne({
         order: [['salarioBruto', 'ASC']]
     });
-    res.render('resultado', { empregado: empregado.dataValues, message: "Menor Salário" });
+    
+    empregado.salarioLiquido = calcularSalarioLiquido(empregado.salarioBruto);
+    res.render('resultado', { empregado: {
+        nome: empregado.nome,
+        salarioBruto: empregado.salarioBruto,
+        salarioLiquido: empregado.salarioLiquido,
+        departamento: empregado.departamento
+    }, message: "Menor Salário" });
 };
 
 // Pesquisar por nome
@@ -92,7 +104,14 @@ exports.pesquisarPorNome = async (req, res) => {
             }
         }
     });
-    res.render('resultadoPesquisa', { empregados: empregados.dataValues, query: nome });
+    const empregadosComSalarioLiquido = empregados.map(emp => ({
+        id: emp.id,
+        nome: emp.nome,
+        salarioBruto: emp.salarioBruto,
+        salarioLiquido: calcularSalarioLiquido(emp.salarioBruto),
+        departamento: emp.departamento,
+    }));
+    res.render('resultadoPesquisa', { empregados: empregadosComSalarioLiquido, query: nome });
 };
 
 // Classificar por setor de trabalho
@@ -100,5 +119,12 @@ exports.classificarPorSetor = async (req, res) => {
     const empregados = await Empregado.findAll({
         order: [['departamento', 'ASC']]
     });
-    res.render('resultadoClassificacao', { empregados: empregados.dataValues });
+    const empregadosComSalarioLiquido = empregados.map(emp => ({
+        id: emp.id,
+        nome: emp.nome,
+        salarioBruto: emp.salarioBruto,
+        salarioLiquido: calcularSalarioLiquido(emp.salarioBruto),
+        departamento: emp.departamento,
+    }));
+    res.render('resultadoClassificacao', { empregados: empregadosComSalarioLiquido });
 };
