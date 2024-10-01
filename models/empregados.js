@@ -24,6 +24,6 @@ module.exports = (sequelize) => {
         timestamps: false,
     });
 
-    //Empregado.sync({force: true})
+    Empregado.sync({force: true})
     return Empregado;
 };
