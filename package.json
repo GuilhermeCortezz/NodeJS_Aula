@@ -1,25 +1,17 @@
 {
-  "name": "nodejs_aula",
+  "name": "prisma",
   "version": "1.0.0",
-  "description": "aula_de_nodeJS",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node --watch server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GuilhermeCortezz/NodeJS_Aula.git"
-  },
-  "author": "Cortez",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GuilhermeCortezz/NodeJS_Aula/issues"
-  },
-  "homepage": "https://github.com/GuilhermeCortezz/NodeJS_Aula#readme",
   "dependencies": {
-    "express": "^4.20.0",
-    "express-handlebars": "^8.0.1",
-    "path": "^0.12.7"
+    "@prisma/client": "^5.21.0",
+    "express": "^4.21.1",
+    "prisma": "^5.21.0"
   }
 }
