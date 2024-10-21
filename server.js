@@ -1,10 +1,13 @@
 const express = require('express');
-const funcRoutes = require('./routes/FuncionarioRoutes');
+const proprietarioRoutes = require('./routes/proprietarioRoutes');
+const produtoRoutes = require('./routes/produtoRoutes');
 
 const app=express();
 const port = 3000;
 app.use(express.json());
-app.use('/api', funcRoutes);
+
+app.use('/proprietarios', proprietarioRoutes);
+app.use('/produtos', produtoRoutes);
 
 app.listen(port, ()=>{
     console.log('Servidor rodando na porta: ' + port);
